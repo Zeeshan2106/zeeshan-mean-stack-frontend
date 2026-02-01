@@ -1,59 +1,186 @@
-# Frontend
+# MEAN Stack Interview – Frontend Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+**Candidate:** Zeeshan Raza  
+**Email:** [recruitment@atdrive.com](mailto:recruitment@atdrive.com)  
+**Repository:** Frontend Client (Angular)
 
-## Development server
+---
 
-To start a local development server, run:
+## 🎯 Overview
+
+This is the **frontend application** for the MEAN Stack Interview assignment, built using **Angular**. It consumes the RESTful backend API and demonstrates clean UI structure, API integration, and standard Angular best practices.
+
+The application allows users to:
+
+* Register and log in
+* Manage products (CRUD)
+* Place and view orders
+* Fetch real-time weather information via backend integration
+
+---
+
+## 🧱 Tech Stack
+
+* **Framework:** Angular
+* **Language:** TypeScript
+* **Styling:** CSS / Angular styles
+* **HTTP Client:** Angular HttpClient
+* **Architecture:** Component-based, service-driven
+
+---
+
+## 🏗️ Application Architecture
+
+### Key Concepts
+
+* **Components** handle UI rendering
+* **Services** manage API communication
+* **Models/Interfaces** define data structures
+* **Environment configs** manage API URLs
+
+---
+
+## 📁 Project Structure
+
+```
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/        # UI components
+│   │   ├── services/          # API service layer
+│   │   ├── models/            # Interfaces / models
+│   │   ├── app-routing.module.ts
+│   │   └── app.module.ts
+│   ├── environments/
+│   │   ├── environment.ts     # Development config
+│   │   └── environment.prod.ts
+│   └── main.ts
+├── angular.json
+├── package.json
+└── README.md
+```
+
+---
+
+## ✨ Features Implemented
+
+### ✅ Authentication
+
+* User registration
+* User login
+* API-based authentication flow
+* Error handling for invalid credentials
+
+---
+
+### ✅ Product Management
+
+* View all products
+* Add new product
+* Edit existing product
+* Delete product
+* Real-time API integration
+
+---
+
+### ✅ Order Management
+
+* Create new orders
+* Select products dynamically
+* Auto-calculated order totals (via backend)
+* View list of orders
+
+---
+
+### ✅ Weather Information
+
+* City-based weather search
+* Weather data fetched via backend API
+* Displays temperature and conditions
+
+---
+
+## 🔌 API Integration
+
+The frontend communicates with the backend REST API using Angular services.
+
+Example base URL:
+
+```
+http://localhost:3000/api
+```
+
+All API calls are centralized inside service classes to maintain clean separation of concerns.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js **v18+**
+* Angular CLI **v16+**
+* Backend API running locally
+
+---
+
+### Installation
+
+```bash
+git clone https://github.com/Zeeshan2106/zeeshan-mean-stack-frontend.git
+cd zeeshan-mean-stack-frontend
+npm install
+```
+
+---
+
+### Environment Configuration
+
+Update `src/environments/environment.ts`:
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:3000/api'
+};
+```
+
+---
+
+### Run Application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Application will be available at:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 🧪 Testing the App
 
-## Building
+1. Start backend server
+2. Start frontend Angular app
+3. Register a user
+4. Login
+5. Create products and orders
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 📌 Best Practices Followed
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+* Modular folder structure
+* Reusable services
+* Centralized API handling
+* Environment-based configuration
+* Clean and readable code
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📄 License
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is created strictly for **technical interview evaluation purposes**.
