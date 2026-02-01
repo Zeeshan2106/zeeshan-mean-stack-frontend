@@ -1,0 +1,73 @@
+  <div class="dashboard">
+      <div class="header">
+        <h2>Dashboard</h2>
+        @if (userService.currentUser(); as user) {
+          <div class="user-info">
+            <span>Welcome, {{ user.username }}!</span>
+            <button class="btn-logout" (click)="logout()">Logout</button>
+          </div>
+        }
+      </div>
+
+      <div class="weather-section">
+        <h3>Weather Information</h3>
+        <div class="weather-search">
+          <input 
+            type="text" 
+            [(ngModel)]="cityName" 
+            placeholder="Enter city name"
+            (keyup.enter)="loadWeather()">
+          <button class="btn-primary" (click)="loadWeather()">Get Weather</button>
+        </div>
+
+        @if (weatherLoading()) {
+          <p>Loading weather data...</p>
+        }
+
+        @if (weatherError()) {
+          <div class="error">{{ weatherError() }}</div>
+        }
+
+        @if (weather(); as w) {
+          <div class="weather-card">
+            <div class="weather-header">
+              <h4>{{ w.city }}, {{ w.country }}</h4>
+            </div>
+            <div class="weather-info">
+              <div class="temp-main">
+                <span class="temperature">{{ w.temperature }}°C</span>
+                <p class="description">{{ w.description }}</p>
+              </div>
+              <div class="weather-details">
+                <div class="detail-item">
+                  <span class="label">Feels Like:</span>
+                  <span class="value">{{ w.feelsLike }}°C</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Humidity:</span>
+                  <span class="value">{{ w.humidity }}%</span>
+                </div>
+                <div class="detail-item">
+                  <span class="label">Wind Speed:</span>
+                  <span class="value">{{ w.windSpeed }} m/s</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="quick-links">
+        <h3>Quick Links</h3>
+        <div class="links-grid">
+          <a routerLink="/products" class="link-card">
+            <h4>Products</h4>
+            <p>Manage your products</p>
+          </a>
+          <a routerLink="/orders" class="link-card">
+            <h4>Orders</h4>
+            <p>View and manage orders</p>
+          </a>
+        </div>
+      </div>
+    </div>

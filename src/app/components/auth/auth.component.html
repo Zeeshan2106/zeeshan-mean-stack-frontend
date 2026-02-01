@@ -1,0 +1,45 @@
+ <div class="auth-container">
+      <div class="auth-card">
+        <h2>{{ isLogin ? 'Login' : 'Register' }}</h2>
+        
+        @if (error()) {
+          <div class="error">{{ error() }}</div>
+        }
+
+        @if (success()) {
+          <div class="success">{{ success() }}</div>
+        }
+
+        <form (submit)="onSubmit($event)">
+          <div class="form-group">
+            <label>Username:</label>
+            <input 
+              type="text" 
+              [(ngModel)]="formData.username" 
+              name="username"
+              required>
+          </div>
+          
+          <div class="form-group">
+            <label>Password:</label>
+            <input 
+              type="password" 
+              [(ngModel)]="formData.password" 
+              name="password"
+              required
+              minlength="6">
+          </div>
+
+          <button type="submit" class="btn-primary" [disabled]="loading()">
+            {{ loading() ? 'Processing...' : (isLogin ? 'Login' : 'Register') }}
+          </button>
+        </form>
+
+        <p class="toggle-auth">
+          {{ isLogin ? "Don't have an account?" : "Already have an account?" }}
+          <a (click)="toggleMode()">
+            {{ isLogin ? 'Register' : 'Login' }}
+          </a>
+        </p>
+      </div>
+    </div>

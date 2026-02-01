@@ -1,0 +1,75 @@
+ <div class="container">
+      <div class="header">
+        <h2>Products</h2>
+        <button class="btn-primary" (click)="showForm = !showForm">
+          {{ showForm ? 'Cancel' : 'Add Product' }}
+        </button>
+      </div>
+
+      @if (showForm) {
+        <div class="form-container">
+          <h3>{{ editingProduct() ? 'Edit Product' : 'Add New Product' }}</h3>
+          <form (submit)="onSubmit($event)">
+            <div class="form-group">
+              <label>Name:</label>
+              <input 
+                type="text" 
+                [(ngModel)]="formData.name" 
+                name="name"
+                required>
+            </div>
+            <div class="form-group">
+              <label>Price:</label>
+              <input 
+                type="number" 
+                [(ngModel)]="formData.price" 
+                name="price"
+                step="0.01"
+                required>
+            </div>
+            <div class="form-group">
+              <label>Description:</label>
+              <textarea 
+                [(ngModel)]="formData.description" 
+                name="description"
+                rows="3"
+                required></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">
+                {{ editingProduct() ? 'Update' : 'Create' }}
+              </button>
+              <button type="button" class="btn-secondary" (click)="cancelEdit()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      }
+
+      @if (loading()) {
+        <p>Loading products...</p>
+      }
+
+      @if (error()) {
+        <div class="error">{{ error() }}</div>
+      }
+
+      <div class="products-grid">
+        @for (product of products(); track product._id) {
+          <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p class="price">\${{ product.price }}</p>
+            <p class="description">{{ product.description }}</p>
+            <div class="card-actions">
+              <button class="btn-edit" (click)="editProduct(product)">Edit</button>
+              <button class="btn-delete" (click)="deleteProduct(product._id!)">Delete</button>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (products().length === 0 && !loading()) {
+        <p class="no-data">No products found. Add your first product!</p>
+      }
+    </div>

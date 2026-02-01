@@ -1,0 +1,51 @@
+ <div class="container">
+      <h2>Orders</h2>
+
+      <div class="create-order">
+        <h3>Create New Order</h3>
+        <form (submit)="createOrder($event)">
+          <div class="form-group">
+            <label>Select Products:</label>
+            <select multiple [(ngModel)]="selectedProductIds" name="products">
+              @for (product of products(); track product._id) {
+                <option [value]="product._id">
+                  {{ product.name }} - ${{ product.price }}
+                </option>
+              }
+            </select>
+          </div>
+          <button type="submit" class="btn-primary">Create Order</button>
+        </form>
+      </div>
+
+      @if (loading()) {
+        <p>Loading orders...</p>
+      }
+
+      @if (error()) {
+        <div class="error">{{ error() }}</div>
+      }
+
+      <div class="orders-list">
+        @for (order of orders(); track order._id) {
+          <div class="order-card">
+            <div class="order-header">
+              <h4>Order #{{ order._id }}</h4>
+              <button class="btn-delete" (click)="deleteOrder(order._id!)">Delete</button>
+            </div>
+            <p><strong>User ID:</strong> {{ order.userId }}</p>
+            <p><strong>Total Amount:</strong> ${{ order.totalAmount }}</p>
+            <p><strong>Products:</strong></p>
+            <ul>
+              @for (product of getOrderProducts(order); track product._id) {
+                <li>{{ product.name }} - ${{ product.price }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+
+      @if (orders().length === 0 && !loading()) {
+        <p class="no-data">No orders found.</p>
+      }
+    </div>

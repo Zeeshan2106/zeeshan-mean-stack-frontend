@@ -1,0 +1,48 @@
+ .navbar {
+      background: #1976D2;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-brand h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .nav-links a.active {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .logout {
+      background: #f44336;
+    }
+
+    .logout:hover {
+      background: #d32f2f !important;
+    }
+
+    main {
+      min-height: calc(100vh - 70px);
+      background: #f5f5f5;
+    }
